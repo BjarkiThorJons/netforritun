@@ -18,7 +18,6 @@ while True:
     c, addr = s.accept()
     c.send(data)
     recieve=c.recv(1024)
-    print("jhasdjksda",recieve)
     try:
         svar = pickle.loads(recieve)
         print(svar)
@@ -26,7 +25,6 @@ while True:
         f = open(uppsk,'rb')
         print('Connected by', addr)
         data = f.read(1024)
-        print("asdasd", data)
         c.send(data)
         f.close()
     except:
