@@ -12,7 +12,7 @@ s.connect((HOST,PORT))
 list = pickle.loads(s.recv(1024))
 for x in range(len(list)):
     print(x+1, list[x])
-numer = 1
+numer = int(input("Veldu uppskrift með tölu: "))
 s.send(pickle.dumps(numer))
 f = open(list[numer-1],'wb')
 data = s.recv(1024)
