@@ -10,12 +10,17 @@ PORT = 12345
 while True:
     s = socket.socket()
     s.connect((HOST, PORT))
-    strengur1 = s.recv(1024)
     tries = 5
-    while tries >= 0:
+    stafur = ""
+    while tries > 0:
+        strengur1 = s.recv(1024)
+        print("Þú hefur %s líf eftir" % tries)
         print(strengur1.decode())
-        stafur = input("Sláðu inn staf: ").encode()
+        while len(stafur) == 1:
+            stafur = input("Sláðu inn staf: ").encode()
         s.send(stafur)
+        lif = s.recv(1024).decode()
+        tries = int(lif)
     s.close()
 
 
