@@ -11,13 +11,14 @@ PORT = 12345
 s = socket.socket()
 s.bind((HOST,PORT))
 s.listen(2)
+with open ("ord.txt","r",encoding="ISO-8859-1") as f:
+    skra=f.read().split("\n")
 
-words=["kaktus","hanskar","reiknirit","forritun","vatn","eyjafjallajökull","vaðlaheiðarvegavinnuverkfærageymsluskúraútidyralyklakippuhringur"]
 stafalisti = []
 
 while True:
     c, addr = s.accept()
-    ord=words[randint(0,len(words)-1)]
+    ord=skra[randint(0,len(skra)-1)]
     ord1=""
     print(ord)
     for x in range(len(ord)):
@@ -27,17 +28,14 @@ while True:
     lif=5
     while lif>0 or buinn==False:
         ord2=""
-        staf=c.recv(1024).decode().lower()
-        stafalisti.append(staf)
+        staf=pickle.loads(c.recv(1024))
+        staf = staf.lower()
+        if staf not in stafalisti:
+            stafalisti.append(staf)
+            if staf not in ord:
+                lif-=1
         print(stafalisti)
-        if staf in ord:
-            for x in ord:
-                if x==staf:
-                    print("sælir")
-        else:
-            print("haha XD")
-            lif-=1
-        c.send(str(lif).encode())
+
 
         """ord1 = ""
         print(staf)
@@ -53,5 +51,14 @@ while True:
                         ord2 += x + " "
             else:
                 ord2 += "_ "
+        if ord==ord2.replace(" ", ""):
+            print("U von")
+            lif=6
+            c.send(str(lif).encode())
+            c.send(ord2.encode())
+            break
+        if lif==0:
+            c.send(ord.encode())
+        c.send(str(lif).encode())
         c.send(ord2.encode())
         print(ord2)
