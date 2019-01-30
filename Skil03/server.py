@@ -56,3 +56,4 @@ while True:
         else:
             c.send(ord2.encode())
         print(ord2)
+    stafalisti = []
