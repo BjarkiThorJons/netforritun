@@ -48,8 +48,11 @@ while True:
             c.send(str(lif).encode())
             c.send(ord2.encode())
             break
+
+        c.send(str(lif).encode())
         if lif==0:
             c.send(ord.encode())
-        c.send(str(lif).encode())
-        c.send(ord2.encode())
+            break
+        else:
+            c.send(ord2.encode())
         print(ord2)
