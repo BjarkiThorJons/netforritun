@@ -35,15 +35,6 @@ while True:
             if staf not in ord:
                 lif-=1
         print(stafalisti)
-
-
-        """ord1 = ""
-        print(staf)
-        for x in ord:
-            if x == staf:
-                ord1=ord1+"%s " %staf
-            else:
-                ord1=ord1+"_ """""
         for x in ord:
             if x in stafalisti:
                 for i in stafalisti:
