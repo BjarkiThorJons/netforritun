@@ -29,7 +29,7 @@ def faSkilabod():
                     f.write(data)
                     print("\nFile recieved")
                     print("Texti:")
-                os.system(nafn)
+                os.system('"'+nafn+'"')
 
             elif skilabod == "texti":
                 print("\n", s.recv(1024).decode())
